@@ -113,7 +113,7 @@ while true; do
 
 		7)
 		clear
-		$(crispy-doom -iwad $WAD -file $MOD $setskill $difficulty $setmap $map)
+		$(crispy-doom -iwad $WAD -file $MOD $setskill $difficulty $setmap $map -savedir $SAVEpath)
 		exit
 		;;
 	esac
