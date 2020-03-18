@@ -18,10 +18,10 @@ The packages will be only checked for on arch based systems, others will probabl
 First download the script and edit it's first few lines to configure it, like these:
 
 ```
-WADpath=~/Games/PC/Doom/WADs
-MODpath=~/Games/PC/Doom/Mods
-SAVEpath=~/Games/PC/Doom/Saves
-WAD=doom.wad
+WADpath="$HOME/Games/PC/Doom/WADs"
+MODpath="$HOME/Games/PC/Doom/Mods"
+SAVEpath="$HOME/Games/PC/Doom/Saves"
+WAD="doom.wad"
 MOD=
 ```
 Comments inside the script are included to make your life easier
