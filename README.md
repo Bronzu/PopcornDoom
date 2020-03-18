@@ -49,7 +49,7 @@ And then just run it!
 ## Contributing
 
 It would be great if you could report some bugs, share on how I can improve the code and maybe even make a pull request.
-Just check this [code of conduct](COC) real quick if you'd like to contribute.
+Just check this [code of conduct](COC.md) real quick if you'd like to contribute.
 
 ## Authors
 
