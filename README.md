@@ -13,7 +13,7 @@ crispy-doom
 
 The packages will be only checked for on arch based systems, others will probably simply fail to run the script.
 
-### Using
+### Configuring
 
 First download the script and edit it's first few lines to configure it, like these:
 
@@ -31,6 +31,8 @@ MUSICpacks=no
 SOUNDeffects=yes
 ```
 Comments inside the script are included to make your life easier
+
+### Running
 
 Then simply make the script executable and run it, for example like this
 
