@@ -15,11 +15,6 @@ fi
 WADpath="$HOME/Gry/PC/Doom/WADs"
 MODpath="$HOME/Gry/PC/Doom/Mods"
 SAVEpath="$HOME/Gry/PC/Doom/Saves"
-#Mods must contain the name of the game WAD
-#you want to use them with or they simply won't
-#be seen! For example hr2final.wad must be named
-#something like hr2final_doom2.wad or hr2final_freedoom2.wad
-#The latter is suggested so to be seen by both game WADS
 
 #These are default values to launch with
 #and will be overwritten if you choose
@@ -35,6 +30,12 @@ MOD="$MODpath/"
 DIALOG_CANCEL=1
 DIALOG_ESC=255
 BACK_TITLE="--backtitle PopcornDoom"
+
+#This value is only used when a difficulty or map is chosen,
+#so when none are selected it goes to the main menu
+#instead of kicking you into the first map
+setskill=""
+setmap=""
 
 while true; do
 ##The main menu, still don't quite know how most of this crap even works
@@ -65,6 +66,7 @@ while true; do
 
 ## The submenus are activated by this switch
 	case $choice in
+		##This is here just in case
 		0)
 		clear
 		echo "Program terminated."
@@ -87,21 +89,31 @@ while true; do
 		$(dialog --stdout $BACK_TITLE --title "Select additional options" --checklist "Some additional options will only work with a map selected, those are mainly related to enemies:" 15 60 3 \
 		        1 "Fast monsters" off \
 		        2 "Respawning monsters" off \
-		        3 "No music" off)
+		        3 "No music" off\
+			4 "No soundeffects" off)
 		;;
 		4)
 		exec 3>&1
 		## Here you can modify your default difficulty
-		difficulty=$(dialog --stdout $BACK_TITLE --title "Select difficulty" --radiolist "This will only work if a map is selected, if no map is selected the first one will play" 15 60 3 \
+		setskill="-skill"
+		difficulty=$(dialog --stdout $BACK_TITLE --title "Select difficulty" --radiolist "This will only work if a map is selected, if no map is selected the first one will play" 15 60 6 \
+			0 "No monsters" off\
 			1 "I'm too young to die." off\
 			2 "Hey not too rough." off\
 			3 "Hurt me plenty." off\
 			4 "Ultra violence." on\
 			5 "Nightmare!" off)
 		;;
+
+		5)
+		exec 3>&1
+		setmap="-warp"
+		map=$(dialog --stdout $BACK_TITLE --title "Choose map" --inputbox "Insert map name, for example E1M1 is 1 1 and MAP01 is 01" 10 30)
+		;;
+
 		7)
 		clear
-		$(crispy-doom -iwad $WAD -file $MOD)
+		$(crispy-doom -iwad $WAD -file $MOD $setskill $difficulty $setmap $map)
 		exit
 		;;
 	esac
