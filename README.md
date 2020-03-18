@@ -23,12 +23,6 @@ MODpath=~/Games/PC/Doom/Mods
 SAVEpath=~/Games/PC/Doom/Saves
 WAD=doom.wad
 MOD=
-DIFFICULTY=3
-FAST=no
-RESPAWN=no
-MUSIC=yes
-MUSICpacks=no
-SOUNDeffects=yes
 ```
 Comments inside the script are included to make your life easier
 
