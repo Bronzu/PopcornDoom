@@ -107,6 +107,11 @@ while true; do
 		map=$(dialog --stdout $BACK_TITLE --title "Choose map" --inputbox "Insert map name, for example E1M1 is 1 1 and MAP01 is 01" 10 30)
 		;;
 
+		6)
+		exec 3>&1
+		$(dialog --stdout $BACK_TITLE --title "Credits" --msgbox "Kacper Wilgus - Initial work - https://github.com/Bronzu\nInitial idea came out of need for convienience to easily launch crispy doom in a similair way to gzdoom for example." 10 60)
+		;;
+
 		7)
 		clear
 		$(crispy-doom -iwad $WAD -file $MOD $setskill $difficulty $setmap $map -savedir $SAVEpath $options)
