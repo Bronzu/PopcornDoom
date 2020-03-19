@@ -1,15 +1,10 @@
 #!/usr/bin/bash
 
 #Checking for dialog in arch based systems
-if [[ -z $(pacman -Q | grep dialog) ]]; then
-	echo "ERROR: Dialog not installed!"
-	exit
-fi
+[ -z $(pacman -Q | grep dialog) ] && echo "ERROR: Dialog not installed!" && exit
+
 #Checking for crispydoom in arch based systems
-if [[ -z $(pacman -Q | grep crispy-doom) ]]; then
-	echo "ERROR: crispydoom not installed!"
-	exit
-fi
+[ -z $(pacman -Q | grep crispy-doom) ]] && echo "ERROR: crispydoom not installed!" && exit
 
 #To configure the script edit these values:
 WADpath="$HOME/Gry/PC/Doom/WADs"
@@ -75,22 +70,23 @@ while true; do
 
 		1)
 		exec 3>&1
-		WAD=$(dialog --stdout $BACK_TITLE --title "Select game WAD" --fselect $WADpath/ 50 50)
+		WAD=$(dialog --stdout $BACK_TITLE --title "Select game WAD" --fselect $WADpath/ 25 60)
 		;;
 
 		2)
 		exec 3>&1
-		MOD=$(dialog --stdout $BACK_TITLE --title "Select mod WAD" --fselect $MODpath/ 50 50)
+		MOD=$(dialog --stdout $BACK_TITLE --title "Select mod WAD" --fselect $MODpath/ 25 60)
 		;;
 
 		3)
 		exec 3>&1
 		## Here you can modify additional options to be default
-		$(dialog --stdout $BACK_TITLE --title "Select additional options" --checklist "Some additional options will only work with a map selected, those are mainly related to enemies:" 15 60 3 \
-		        1 "Fast monsters" off \
-		        2 "Respawning monsters" off \
-		        3 "No music" off\
-			4 "No soundeffects" off)
+		options=$(dialog --stdout $BACK_TITLE --title "Select additional options" --checklist "Some additional options will only work with a map selected, those are mainly related to enemies:" 15 60 5 \
+		        -fast "Fast monsters" off \
+		        -respawn "Respawning monsters" off \
+		        -nomusic "No music" off\
+			-nosfx "No soundeffects" off \
+			-nomouse "Turns off the mouse" off \)
 		;;
 		4)
 		exec 3>&1
@@ -113,7 +109,7 @@ while true; do
 
 		7)
 		clear
-		$(crispy-doom -iwad $WAD -file $MOD $setskill $difficulty $setmap $map -savedir $SAVEpath)
+		$(crispy-doom -iwad $WAD -file $MOD $setskill $difficulty $setmap $map -savedir $SAVEpath $options)
 		exit
 		;;
 	esac
