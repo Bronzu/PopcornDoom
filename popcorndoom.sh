@@ -7,9 +7,9 @@
 [ -z $(pacman -Q | grep crispy-doom) ]] && echo "ERROR: crispydoom not installed!" && exit
 
 #To configure the script edit these values:
-WADpath="$HOME/Gry/PC/Doom/WADs"
-MODpath="$HOME/Gry/PC/Doom/Mods"
-SAVEpath="$HOME/Gry/PC/Doom/Saves"
+WADpath="$HOME/Games/PC/Doom/WADs"
+MODpath="$HOME/Games/PC/Doom/Mods"
+SAVEpath="$HOME/Games/PC/Doom/Saves"
 
 #These are default values to launch with
 #and will be overwritten if you choose
@@ -86,7 +86,7 @@ while true; do
 		        -respawn "Respawning monsters" off \
 		        -nomusic "No music" off\
 			-nosfx "No soundeffects" off \
-			-nomouse "Turns off the mouse" off \)
+			-nomouse "Turns off the mouse" off)
 		;;
 		4)
 		exec 3>&1
@@ -100,7 +100,6 @@ while true; do
 			4 "Ultra violence." on\
 			5 "Nightmare!" off)
 		;;
-
 		5)
 		exec 3>&1
 		setmap="-warp"
